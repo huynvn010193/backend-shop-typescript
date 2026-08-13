@@ -1,4 +1,5 @@
 node_modules/
 dist/
 logs/
-yarn-error.log
+coverage/
+.yarn/

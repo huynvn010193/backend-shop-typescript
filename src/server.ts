@@ -17,4 +17,3 @@ const server = http.createServer(app);
 server.listen(normalizedPort);
 server.on('error', (error: NodeJS.ErrnoException) => onError(error, normalizedPort));
 server.on('listening', () => onListening(server));
- 
