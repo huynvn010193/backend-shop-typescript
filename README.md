@@ -29,3 +29,6 @@ process.exit(1) process.exit(1)
 
 yarn add helmet
 yarn add cors
+
+== Cài đặt database:
+yarn add mongoose
