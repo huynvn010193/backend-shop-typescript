@@ -1,6 +1,8 @@
 import express from 'express';
 import Middleware from './app/configs/middleware';
+import { db } from './app/configs/connection';
 
+db;
 class App {
   public app: express.Application;
   constructor() {
