@@ -7,7 +7,7 @@
 
 Flow file serverHandle.ts
 
-app.listen(3000)
+app.listen(4000)
 ↓
 Có lỗi?
 ↓

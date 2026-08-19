@@ -3,7 +3,7 @@ import app from '../app';
 import { normalizePort, onError, onListening } from './serverHandle';
 import logger from '../app/lib/logger';
 
-const normalizedPort = normalizePort(process.env.PORT ?? 3000);
+const normalizedPort = normalizePort(process.env.PORT ?? 4000);
 
 if (normalizedPort === false) {
   logger.error('PORT must be a non-negative number or named pipe.');
