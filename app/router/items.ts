@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import itemsController from '../controller/itemsController';
+import ItemsController from '../controller/itemsController';
 
 export default class ItemRouter {
   public router: Router;
@@ -10,6 +10,6 @@ export default class ItemRouter {
 
   // đi vào itemsController
   public routes(): void {
-    this.router.get('/', itemsController.get);
+    this.router.get('/', ItemsController.get);
   }
 }
