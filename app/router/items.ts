@@ -11,5 +11,6 @@ export default class ItemRouter {
   // đi vào itemsController
   public routes(): void {
     this.router.get('/', ItemsController.get);
+    this.router.post('/add', ItemsController.post);
   }
 }

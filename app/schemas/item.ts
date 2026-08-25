@@ -18,4 +18,6 @@ const MainSchema: Schema = new Schema({
   },
 });
 
-export default connection.db.model<MainDocument>(envConfigs.database.col_items, MainSchema);
+const MainModel = connection.db.model<MainDocument>(envConfigs.database.col_items, MainSchema);
+
+export default MainModel;
