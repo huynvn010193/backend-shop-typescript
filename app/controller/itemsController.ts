@@ -19,26 +19,20 @@ class ItemController {
     res: Response,
     next: NextFunction,
   ): Promise<any> {
-    try {
-      const { id } = req.params;
-      const data = await ItemModel.getOneItem(id);
-      res.status(200).json({
-        success: true,
-        data: data,
-      });
-    } catch (error) {}
+    const { id } = req.params;
+    const data = await ItemModel.getOneItem(id);
+    res.status(200).json({
+      success: true,
+      data: data,
+    });
   }
 
   public async post(req: Request, res: Response, next: NextFunction): Promise<any> {
-    try {
-      const data = await ItemModel.addItems(req.body, {});
-      res.status(200).json({
-        success: true,
-        data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    const data = await ItemModel.addItems(req.body, {});
+    res.status(200).json({
+      success: true,
+      data,
+    });
   }
 
   public async updateItem(
@@ -46,14 +40,12 @@ class ItemController {
     res: Response,
     next: NextFunction,
   ): Promise<any> {
-    try {
-      const { id } = req.params;
-      const data = await ItemModel.updateItem({ id: id, body: req.body });
-      res.status(200).json({
-        success: true,
-        data: data,
-      });
-    } catch (error) {}
+    const { id } = req.params;
+    const data = await ItemModel.updateItem({ id: id, body: req.body });
+    res.status(200).json({
+      success: true,
+      data: data,
+    });
   }
 
   public async deleteItem(
@@ -61,14 +53,12 @@ class ItemController {
     res: Response,
     next: NextFunction,
   ): Promise<any> {
-    try {
-      const { id } = req.params;
-      const data = await ItemModel.deleteItem(id);
-      res.status(200).json({
-        success: true,
-        data: data,
-      });
-    } catch (error) {}
+    const { id } = req.params;
+    const data = await ItemModel.deleteItem(id);
+    res.status(200).json({
+      success: true,
+      data: data,
+    });
   }
 }
 
