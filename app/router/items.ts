@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import ItemsController from '../controller/itemsController';
 import AsyncHandle from '../middleware/async';
+import { validator } from '../validates/items';
 
 export default class ItemRouter {
   public router: Router;
@@ -13,8 +14,8 @@ export default class ItemRouter {
   public routes(): void {
     this.router.get('/', AsyncHandle(ItemsController.get));
     this.router.get('/:id', AsyncHandle(ItemsController.getOne));
-    this.router.post('/add', AsyncHandle(ItemsController.post));
-    this.router.put('/edit/:id', AsyncHandle(ItemsController.updateItem));
+    this.router.post('/add', validator, AsyncHandle(ItemsController.post));
+    this.router.put('/edit/:id', validator, AsyncHandle(ItemsController.updateItem));
     this.router.delete('/delete/:id', AsyncHandle(ItemsController.deleteItem));
   }
 }

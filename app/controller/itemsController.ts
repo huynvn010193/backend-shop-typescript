@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import ItemModel from '../models/items';
 import { parseListQuery, QueryParams } from '../utils';
-
+import { validationResult } from 'express-validator';
 class ItemController {
   public async get(req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
@@ -28,11 +28,13 @@ class ItemController {
   }
 
   public async post(req: Request, res: Response, next: NextFunction): Promise<any> {
-    const data = await ItemModel.addItems(req.body, {});
-    res.status(200).json({
-      success: true,
-      data,
-    });
+    const err = validationResult(req);
+    console.log('err', err);
+    // const data = await ItemModel.addItems(req.body, {});
+    // res.status(200).json({
+    //   success: true,
+    //   data,
+    // });
   }
 
   public async updateItem(
