@@ -7,8 +7,10 @@ export default class ValidateReq {
     const error: any = validationResult(req);
     const err: any = error.array();
     let message: any = {};
+
+    // TODO: vòng lặp in ra lỗi.
     err.map((val: any, ind: any) => {
-      message[val.param] = val.msg;
+      message[val.path] = val.msg;
     });
     if (Object.keys(message).length > 0) {
       next(new ErrorResponse(400, message));

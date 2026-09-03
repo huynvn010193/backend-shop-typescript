@@ -14,7 +14,7 @@ export default class ItemRouter {
   public routes(): void {
     this.router.get('/', AsyncHandle(ItemsController.get));
     this.router.get('/:id', AsyncHandle(ItemsController.getOne));
-    this.router.post('/add', validator, AsyncHandle(ItemsController.post));
+    this.router.post('/add', validator, AsyncHandle(ItemsController.addItems));
     this.router.put('/edit/:id', validator, AsyncHandle(ItemsController.updateItem));
     this.router.delete('/delete/:id', AsyncHandle(ItemsController.deleteItem));
   }
