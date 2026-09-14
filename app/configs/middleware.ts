@@ -2,6 +2,7 @@ import { IServer } from '../interfaces/serverInterface';
 import helmet from 'helmet';
 import cors from 'cors';
 import express from 'express';
+import cookieParse from 'cookie-parser';
 
 export default class Middleware {
   static init(server: IServer): void {
@@ -9,6 +10,7 @@ export default class Middleware {
     server.app.use(express.urlencoded({ extended: true }));
     server.app.use(helmet());
     server.app.use(cors());
+    server.app.use(cookieParse());
 
     server.app.use((req, res, next) => {
       res.setHeader('Access-Control-Allow-Origin', '*');

@@ -7,7 +7,14 @@ import MainModel from '../schemas/item';
 class NewsController {
   public async get(req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
-      const data = await NewsModel.getListNews(req.query, { task: 'all' });
+      let data;
+      const getRss = Number(req.cookies?.getRss);
+      if (getRss >= Date.now()) {
+        data = await NewsModel.getListNews(req.query, { task: 'off' });
+      } else {
+        res.cookie('getRss', Date.now() + 1 * 60 * 1000);
+        data = await NewsModel.getListNews(req.query, { task: 'onl' });
+      }
       res.status(200).json({
         success: true,
         data: data,

@@ -5,4 +5,7 @@ export const envConfigs: any = {
     database: 'typescript_project',
     col_items: 'items',
   },
+  data: {
+    news: 'app/__data/news.json',
+  },
 };
