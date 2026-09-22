@@ -8,4 +8,8 @@ export const envConfigs: any = {
   data: {
     news: 'app/__data/news.json',
   },
+  price: {
+    urlGold: 'https://giavang.now/api/prices',
+    urlCoin: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
+  },
 };
