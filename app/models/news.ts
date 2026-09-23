@@ -4,6 +4,7 @@ import { GetListItemsParams, LIMIT_RECORD_DEFAULT } from '../utils';
 import fs from 'fs';
 import Parser from 'rss-parser';
 import { envConfigs } from './../configs/envConfigs';
+import VnExpressRss from '../utils/vnExpressRss';
 
 type CustomFeed = { foo: string };
 type CustomItem = { bar: string };
@@ -21,12 +22,12 @@ export default class NewsModel {
       console.log('onl');
       const feed = await parser.parseURL('https://vnexpress.net/rss/tin-moi-nhat.rss');
       fs.writeFileSync(envConfigs.data.news, JSON.stringify(feed.items));
-      return feed.items;
+      return VnExpressRss.init(feed.items);
     }
     if (option.task === 'off') {
       console.log('off');
       let data: Buffer = fs.readFileSync(envConfigs.data.news);
-      return JSON.parse(data.toString());
+      return VnExpressRss.init(JSON.parse(data.toString()));
     }
   }
 }

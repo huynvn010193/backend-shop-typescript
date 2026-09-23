@@ -6,7 +6,7 @@ class PriceController {
     let data = await PriceModel.getGold({}, {});
     res.status(200).json({
       success: true,
-      count: data.count,
+      count: data.length,
       data,
     });
   }
