@@ -1,14 +1,15 @@
 import { Request, Response, NextFunction } from 'express';
-import ItemModel from '../models/items';
+import CategoryModel from '../models/category';
 import { parseListQuery, QueryParams } from '../utils';
 import { validationResult } from 'express-validator';
 import ValidateReq from '../middleware/validateReq';
-import MainModel from '../schemas/item';
-class ItemController {
+import MainModel from '../schemas/category';
+import ErrorResponse from '../utils/errorResponse';
+class CategoryController {
   public async get(req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
       const query = parseListQuery(req.query as QueryParams);
-      const data = await ItemModel.getListItems(query);
+      const data = await CategoryModel.getListItems(query);
       res.status(200).json({
         success: true,
         data: data,
@@ -22,7 +23,7 @@ class ItemController {
     next: NextFunction,
   ): Promise<any> {
     const { id } = req.params;
-    const data = await ItemModel.getOneItem(id);
+    const data = await CategoryModel.getOneItem(id);
     res.status(200).json({
       success: true,
       data: data,
@@ -33,7 +34,7 @@ class ItemController {
     const err = await ValidateReq.init(req, res, next);
     // TODO: Kiểm tra không lỗi thì mới save
     if (!err) {
-      const data = await ItemModel.addItems(req.body, {});
+      const data = await CategoryModel.addItems(req.body, {});
       res.status(200).json({
         success: true,
         data,
@@ -49,7 +50,7 @@ class ItemController {
     const err = await ValidateReq.init(req, res, next);
     if (!err) {
       const { id } = req.params;
-      const data = await ItemModel.updateItem({ id: id, body: req.body });
+      const data = await CategoryModel.updateItem({ id: id, body: req.body });
       res.status(200).json({
         success: true,
         data: data,
@@ -63,7 +64,23 @@ class ItemController {
     next: NextFunction,
   ): Promise<any> {
     const { id } = req.params;
-    const data = await ItemModel.deleteItem(id);
+    const data = await CategoryModel.deleteItem(id);
+    res.status(200).json({
+      success: true,
+      data: data,
+    });
+  }
+
+  public async getArticleInCategory(
+    req: Request<{ id: string }>,
+    res: Response,
+    next: NextFunction,
+  ): Promise<any> {
+    console.log('req', req.params);
+
+    const data = await CategoryModel.getArticleInCategory({ req, res }, {});
+    if (!data) return next(new ErrorResponse(400, 'Đường dẫn không hợp lệ'));
+
     res.status(200).json({
       success: true,
       data: data,
@@ -71,4 +88,4 @@ class ItemController {
   }
 }
 
-export default new ItemController();
+export default new CategoryController();

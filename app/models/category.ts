@@ -1,6 +1,7 @@
 import { Model } from 'mongoose';
-import MainModel, { MainDocument } from '../schemas/item';
+import MainModel, { MainDocument } from '../schemas/category';
 import { GetListItemsParams, LIMIT_RECORD_DEFAULT } from '../utils';
+import NewsModel from './news';
 
 export default class ItemModel {
   // TODO: select = '-__v': ko lấy field: __v từ mongoDB
@@ -67,5 +68,13 @@ export default class ItemModel {
     })
       .select('-__v')
       .lean();
+  }
+
+  static async getArticleInCategory(params: any, option: any): Promise<any> {
+    const item = await MainModel.findById(params.req.params.id).select({});
+    params.link = item?.link;
+    params.slug = item?.slug;
+    const data = await NewsModel.getListNews(params, {});
+    return data;
   }
 }

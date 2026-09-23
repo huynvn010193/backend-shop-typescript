@@ -1,6 +1,6 @@
 import * as express from 'express';
 import { IServer } from '../interfaces/serverInterface';
-import ItemRouter from './items';
+import CategoryRouter from './category';
 import NewsRouter from './news';
 import PricesRouter from './price';
 
@@ -8,8 +8,8 @@ export default class Routes {
   static init(server: IServer): void {
     const router: express.Router = express.Router();
 
-    // item
-    server.app.use('/api/v1/items', new ItemRouter().router);
+    // category
+    server.app.use('/api/v1/category', new CategoryRouter().router);
 
     // news
     server.app.use('/api/v1/news', new NewsRouter().router);

@@ -3,10 +3,10 @@ export const envConfigs: any = {
     username: 'Node-Zend',
     password: 'Nike08817',
     database: 'typescript_project',
-    col_items: 'items',
+    col_category: 'category',
   },
   data: {
-    news: 'app/__data/news.json',
+    path: 'app/__data/',
   },
   price: {
     urlGold: 'https://giavang.now/api/prices',

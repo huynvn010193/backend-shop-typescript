@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import MainModel, { MainDocument } from '../schemas/item';
+import MainModel, { MainDocument } from '../schemas/category';
 import { GetListItemsParams, LIMIT_RECORD_DEFAULT } from '../utils';
 import fs from 'fs';
 import Parser from 'rss-parser';
@@ -18,16 +18,27 @@ const parser: Parser<CustomFeed, CustomItem> = new Parser({
 
 export default class NewsModel {
   static async getListNews(params: any, option: any): Promise<any> {
-    if (option.task === 'onl') {
-      console.log('onl');
-      const feed = await parser.parseURL('https://vnexpress.net/rss/tin-moi-nhat.rss');
-      fs.writeFileSync(envConfigs.data.news, JSON.stringify(feed.items));
-      return VnExpressRss.init(feed.items);
-    }
-    if (option.task === 'off') {
+    const link = params.link ? params.link : 'https://vnexpress.net/rss/tin-moi-nhat.rss';
+    const slug = params.slug ? params.slug : 'news';
+    // path
+    const path = envConfigs.data.path;
+    let pathname = path + slug + '.json';
+
+    const getRss = Number(params.req.cookies?.getRss);
+    if (getRss >= Date.now()) {
       console.log('off');
-      let data: Buffer = fs.readFileSync(envConfigs.data.news);
+      const data: Buffer = fs.readFileSync(pathname);
       return VnExpressRss.init(JSON.parse(data.toString()));
+    } else {
+      try {
+        params.res.cookie('getRss', Date.now() + 1 * 60 * 1000);
+        console.log('onl');
+        const feed = await parser.parseURL(link);
+        fs.writeFileSync(pathname, JSON.stringify(feed.items));
+        return VnExpressRss.init(feed.items);
+      } catch (error) {
+        return false;
+      }
     }
   }
 }

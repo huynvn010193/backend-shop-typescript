@@ -2,5 +2,6 @@ import { body } from 'express-validator';
 
 export const validator: any = [
   body('name', 'Không đủ chiều dài').isLength({ min: 5 }),
-  body('content', 'Không đủ chiều dài').isLength({ min: 10 }),
+  body('slug', 'Không đủ chiều dài').isLength({ min: 5 }),
+  body('link', 'Không được để rỗng').isLength({ min: 1 }),
 ];

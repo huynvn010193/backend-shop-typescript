@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import PriceController from '../controller/priceController';
 import AsyncHandle from '../middleware/async';
-import { validator } from '../validates/items';
+import { validator } from '../validates/category';
 
 export default class NewsRouter {
   public router: Router;

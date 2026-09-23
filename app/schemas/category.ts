@@ -4,7 +4,8 @@ import * as connection from '../configs/connection';
 
 export interface MainDocument extends Document {
   name: String;
-  content: String;
+  slug: String;
+  link: String;
 }
 
 const MainSchema: Schema = new Schema({
@@ -12,12 +13,16 @@ const MainSchema: Schema = new Schema({
     type: String,
     required: true,
   },
-  content: {
+  slug: {
+    type: String,
+    required: true,
+  },
+  link: {
     type: String,
     required: true,
   },
 });
 
-const MainModel = connection.db.model<MainDocument>(envConfigs.database.col_items, MainSchema);
+const MainModel = connection.db.model<MainDocument>(envConfigs.database.col_category, MainSchema);
 
 export default MainModel;
