@@ -28,14 +28,14 @@ export default class NewsModel {
     if (getRss >= Date.now()) {
       console.log('off');
       const data: Buffer = fs.readFileSync(pathname);
-      return VnExpressRss.init(JSON.parse(data.toString()));
+      return VnExpressRss.init(JSON.parse(data.toString()), params);
     } else {
       try {
         params.res.cookie('getRss', Date.now() + 1 * 60 * 1000);
         console.log('onl');
         const feed = await parser.parseURL(link);
         fs.writeFileSync(pathname, JSON.stringify(feed.items));
-        return VnExpressRss.init(feed.items);
+        return VnExpressRss.init(feed.items, params);
       } catch (error) {
         return false;
       }

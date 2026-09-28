@@ -14,7 +14,7 @@ export default class ItemRouter {
   public routes(): void {
     this.router.get('/', AsyncHandle(CategoryController.get));
     this.router.get('/:id', AsyncHandle(CategoryController.getOne));
-    this.router.get('/:id/article/:total', AsyncHandle(CategoryController.getArticleInCategory));
+    this.router.get('/:id/article{/:total}', AsyncHandle(CategoryController.getArticleInCategory));
 
     this.router.post('/add', validator, AsyncHandle(CategoryController.addItems));
     this.router.put('/edit/:id', validator, AsyncHandle(CategoryController.updateItem));

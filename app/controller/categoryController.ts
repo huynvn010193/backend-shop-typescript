@@ -83,6 +83,7 @@ class CategoryController {
 
     res.status(200).json({
       success: true,
+      count: data.length,
       data: data,
     });
   }
