@@ -8,6 +8,7 @@ export default class VnExpressRss {
       let html = content.replace(/\\"/g, '"');
       let myImage = html.match(/<img[^>]*\bsrc\s*=\s*"([^"]+)"/i);
       let myContent = html.match('.*br>(.*)');
+      news.id = item.id;
       news.title = item.title;
       news.link = item.link;
       news.pubDate = dateformat(item.pubDate, 'dd-mm-yyyy h:MM:ss TT');
