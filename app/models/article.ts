@@ -18,6 +18,21 @@ const parser: Parser<CustomFeed, CustomItem> = new Parser({
 
 export default class ArticleModel {
   static async listItem(params: any, option: any): Promise<any> {
-    console.log('ArticleModel', params);
+    let id = params.req.params.id;
+    let slug = id.split('_')[0];
+
+    // path
+    let path = envConfigs.data.path;
+    let pathName = path + slug + '.json';
+
+    try {
+      let data: Buffer = fs.readFileSync(pathName);
+      data = await VnExpressRss.init(JSON.parse(data.toString()), params);
+
+      let result = data.find((item: any) => item.id === id);
+      return result;
+    } catch {
+      return false;
+    }
   }
 }
