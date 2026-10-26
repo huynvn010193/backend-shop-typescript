@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "start": "node dist/src/server.js",
-    "dev": "nodemon --watch app.ts --watch app --watch src --ext ts --exec \"yarn build && node dist/src/server.js\"",
+    "dev": "nodemon --watch app.ts --watch app --watch src --ext ts --exec,json --exec \"yarn build && node dist/src/server.js\"",
     "format": "prettier --write \"**/*.{ts,js,json,md,yml,yaml}\"",
     "format:check": "prettier --check \"**/*.{ts,js,json,md,yml,yaml}\"",
     "test": "echo \"Error: no test specified\" && exit 1"
