@@ -80,3 +80,6 @@ Operator thuộc nhóm cần mảng?
 acc[field][operator] = value
 ↓
 Trả về parsedQuery
+
+merge swagger:
+yarn swagger-merger -i ./app/swagger/swagger_merge.json -o ./app/lib/swagger.json

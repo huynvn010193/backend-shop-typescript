@@ -1,0 +1,102 @@
+{
+  "schemas": {
+    "id": {
+      "properties": {
+        "uuid": {
+          "type": "string"
+        }
+      }
+    },
+    "total": {
+      "type": "number"
+    },
+    "category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        }
+      }
+    },
+    "body_category": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        }
+      }
+    },
+    "article": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "pubDate": {
+          "type": "string",
+          "format": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      }
+    },
+    "gold": {
+      "type": "object",
+      "properties": {
+        "buy": {
+          "type": "bumber"
+        },
+        "sell": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "coin": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "bumber"
+        },
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "string"
+        },
+        "percent_change_1h": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
