@@ -29,6 +29,10 @@
     {
       "name": "article",
       "description": "API tin tức trong hệ thống"
+    },
+    {
+      "name": "price",
+      "description": "API coin-gold trong hệ thống"
     }
   ],
   "consumes": ["application/json"],
@@ -274,6 +278,42 @@
           }
         }
       }
+    },
+    "/price/gold": {
+      "get": {
+        "tags": ["price"],
+        "summary": "Get gold",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/gold"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/price/coin": {
+      "get": {
+        "tags": ["price"],
+        "summary": "Get coin form coin market",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/coin"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -341,6 +381,37 @@
             "type": "string"
           },
           "content": {
+            "type": "string"
+          }
+        }
+      },
+      "gold": {
+        "type": "object",
+        "properties": {
+          "buy": {
+            "type": "bumber"
+          },
+          "sell": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "coin": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "bumber"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string"
+          },
+          "percent_change_1h": {
             "type": "string"
           }
         }
