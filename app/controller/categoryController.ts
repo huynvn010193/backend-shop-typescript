@@ -7,6 +7,79 @@ import MainModel from '../schemas/category';
 import ErrorResponse from '../utils/errorResponse';
 class CategoryController {
   public async get(req: Request, res: Response, next: NextFunction): Promise<any> {
+    /**
+     * @swagger
+     * /category:
+     *   get:
+     *     tags:
+     *       - category
+     *     summary: Get all categories
+     *     parameters:
+     *       - in: query
+     *         name: page
+     *         schema:
+     *           type: integer
+     *           minimum: 1
+     *           default: 1
+     *         description: Page number
+     *       - in: query
+     *         name: limit
+     *         schema:
+     *           type: integer
+     *           minimum: 1
+     *           maximum: 100
+     *           default: 10
+     *         description: Number of categories per page
+     *       - in: query
+     *         name: sort
+     *         schema:
+     *           type: string
+     *         description: Fields to sort by, separated by commas (for example, name,-createdAt)
+     *       - in: query
+     *         name: select
+     *         schema:
+     *           type: string
+     *         description: Fields to return, separated by commas
+     *     responses:
+     *       200:
+     *         description: Category list retrieved successfully
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: object
+     *               properties:
+     *                 success:
+     *                   type: boolean
+     *                   example: true
+     *                 data:
+     *                   type: object
+     *                   properties:
+     *                     items:
+     *                       type: array
+     *                       items:
+     *                         type: object
+     *                         properties:
+     *                           id:
+     *                             type: string
+     *                           name:
+     *                             type: string
+     *                           slug:
+     *                             type: string
+     *                           link:
+     *                             type: string
+     *                     pagination:
+     *                       type: object
+     *                       properties:
+     *                         page:
+     *                           type: integer
+     *                         limit:
+     *                           type: integer
+     *                         totalItems:
+     *                           type: integer
+     *                         totalPage:
+     *                           type: integer
+     */
+
     try {
       const query = parseListQuery(req.query as QueryParams);
       const data = await CategoryModel.getListItems(query);

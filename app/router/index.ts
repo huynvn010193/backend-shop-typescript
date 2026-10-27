@@ -5,14 +5,33 @@ import NewsRouter from './news';
 import PricesRouter from './price';
 import ArticleRouter from './article';
 import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from '../lib/swagger.json';
+import swaggerJsDoc from 'swagger-jsdoc';
+
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'ZendVN NodeJS API with Typescript',
+      version: '1.0.0',
+      description: 'A simple Express Library API',
+    },
+    servers: [
+      {
+        url: 'http://localhost:4000/api/v1',
+      },
+    ],
+  },
+  apis: ['./app/controller/*.ts'],
+};
+
+const specs = swaggerJsDoc(options);
 
 export default class Routes {
   static init(server: IServer): void {
     const router: express.Router = express.Router();
 
     // document api
-    server.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+    server.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
     // article
     server.app.use('/api/v1/article', new ArticleRouter().router);
