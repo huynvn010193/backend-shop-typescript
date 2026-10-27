@@ -16,8 +16,8 @@ export default class ItemRouter {
     this.router.get('/:id', AsyncHandle(CategoryController.getOne));
     this.router.get('/:id/article{/:total}', AsyncHandle(CategoryController.getArticleInCategory));
 
-    this.router.post('/add', validator, AsyncHandle(CategoryController.addItems));
-    this.router.put('/edit/:id', validator, AsyncHandle(CategoryController.updateItem));
-    this.router.delete('/delete/:id', AsyncHandle(CategoryController.deleteItem));
+    this.router.post('/', validator, AsyncHandle(CategoryController.addItems));
+    this.router.put('/:id', validator, AsyncHandle(CategoryController.updateItem));
+    this.router.delete('/:id', AsyncHandle(CategoryController.deleteItem));
   }
 }

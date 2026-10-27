@@ -1,0 +1,38 @@
+{
+  "get": {
+    "tags": ["category"],
+    "summary": "Get total article in category with id",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "Get total article in category with id",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/id"
+        }
+      },
+      {
+        "name": "total",
+        "in": "path",
+        "description": "Number article",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/total"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/article"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,9 +1,9 @@
 {
   "$ref": "./config.json",
   "paths": {
-    "$ref": "./paths.json"
+    "$ref": "./paths//paths.json"
   },
   "components": {
-    "$ref": "./paths.json"
+    "$ref": "./components/paths.json"
   }
 }

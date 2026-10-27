@@ -60,6 +60,35 @@
             }
           }
         }
+      },
+      "post": {
+        "tags": [
+          "category"
+        ],
+        "summary": "Add category",
+        "requestBody": {
+          "description": "category obj",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_category"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/category"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/category/{id}": {
@@ -91,40 +120,7 @@
             }
           }
         }
-      }
-    },
-    "/category/add": {
-      "post": {
-        "tags": [
-          "category"
-        ],
-        "summary": "Add category",
-        "requestBody": {
-          "description": "category obj",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/body_category"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/category"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/category/edit/{id}": {
+      },
       "put": {
         "tags": [
           "category"
@@ -164,9 +160,7 @@
             }
           }
         }
-      }
-    },
-    "/category/delete/{id}": {
+      },
       "delete": {
         "tags": [
           "category"
@@ -341,302 +335,6 @@
     }
   },
   "components": {
-    "/category": {
-      "get": {
-        "tags": [
-          "category"
-        ],
-        "summary": "Get all category",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/category"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/category/{id}": {
-      "get": {
-        "tags": [
-          "category"
-        ],
-        "summary": "Get single category with id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of pet to use",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/category"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/category/add": {
-      "post": {
-        "tags": [
-          "category"
-        ],
-        "summary": "Add category",
-        "requestBody": {
-          "description": "category obj",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/body_category"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/category"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/category/edit/{id}": {
-      "put": {
-        "tags": [
-          "category"
-        ],
-        "summary": "Edit category",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of pet to use",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/id"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "category obj",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/body_category"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/category"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/category/delete/{id}": {
-      "delete": {
-        "tags": [
-          "category"
-        ],
-        "summary": "Delete a with categoryID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of pet to use",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/category"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/category/{id}/article": {
-      "get": {
-        "tags": [
-          "category"
-        ],
-        "summary": "Add category",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of pet to use",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/article"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/category/{id}/article/{total}": {
-      "get": {
-        "tags": [
-          "category"
-        ],
-        "summary": "Get total article in category with id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Get total article in category with id",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/id"
-            }
-          },
-          {
-            "name": "total",
-            "in": "path",
-            "description": "Number article",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/total"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/article"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/article/{id}": {
-      "get": {
-        "tags": [
-          "article"
-        ],
-        "summary": "Get single article with id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of pet to use",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/article"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/price/gold": {
-      "get": {
-        "tags": [
-          "price"
-        ],
-        "summary": "Get gold",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/gold"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/price/coin": {
-      "get": {
-        "tags": [
-          "price"
-        ],
-        "summary": "Get coin form coin market",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/coin"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+    "$ref": "./components/paths.json"
   }
 }
